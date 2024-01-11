@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'logger.dart';
 
 Future<void> main(List<String> arguments) async {
