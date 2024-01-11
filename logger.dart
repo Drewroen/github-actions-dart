@@ -6,43 +6,46 @@ class Logger {
     stdout.writeln("::debug::$message");
   }
 
-  void error(String message, LoggingParameters parameters) {
+  void error(String message,
+      [LoggingParameters parameters = const LoggingParameters.empty()]) {
     String output = "::error";
     output += parameters.toString();
     output += "::message";
     stdout.writeln(output);
   }
 
-  void notice(String message, LoggingParameters parameters) {
+  void notice(String message,
+      [LoggingParameters parameters = const LoggingParameters.empty()]) {
     String output = "::notice";
     output += parameters.toString();
     output += "::message";
     stdout.writeln(output);
   }
 
-  void warning(String message, LoggingParameters parameters) {
+  void warning(String message,
+      [LoggingParameters parameters = const LoggingParameters.empty()]) {
     String output = "::warning";
     output += parameters.toString();
     output += "::message";
     stdout.writeln(output);
   }
 
-  void group(String title, Function f) {
+  void group(String title, Function func) {
     stdout.writeln("::group::$title");
-    f();
+    func();
     stdout.writeln("::endgroup::");
   }
 }
 
 class LoggingParameters {
-  String? title;
-  String? file;
-  int? col;
-  int? endColumn;
-  int? line;
-  int? endLine;
+  final String? title;
+  final String? file;
+  final int? col;
+  final int? endColumn;
+  final int? line;
+  final int? endLine;
 
-  LoggingParameters(
+  const LoggingParameters(
       {this.title,
       this.file,
       this.col,
@@ -54,7 +57,5 @@ class LoggingParameters {
     return "";
   }
 
-  factory LoggingParameters.empty() {
-    return LoggingParameters();
-  }
+  const factory LoggingParameters.empty() = LoggingParameters;
 }
