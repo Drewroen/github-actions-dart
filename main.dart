@@ -1,15 +1,14 @@
-import 'logger.dart';
+import 'lib/core/core.dart' as core;
 
 Future<void> main(List<String> arguments) async {
-  Logger logger = Logger();
-  logger.debug("Debug!");
-  logger.error("Error!");
-  logger.notice("Notice!");
-  logger.warning("Warning!");
-  logger.group("Group!", () => GroupPrint(logger));
+  core.debug("Debug!");
+  core.error("Error!");
+  core.notice("Notice!");
+  core.warning("Warning!");
+  core.group("Group!", () => GroupPrint());
 }
 
-void GroupPrint(Logger logger) {
-  logger.debug("1");
-  logger.debug("2");
+void GroupPrint() {
+  core.debug("1");
+  core.debug("2");
 }
