@@ -1,13 +1,27 @@
+/// This package covers different ways to log messages in a Github Action.
+///
+/// For more information, see
+/// https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions
 import 'dart:io';
 
+/// Prints a debug message to the log.
+///
+/// You must create a secret named ACTIONS_STEP_DEBUG with the value true to see
+/// the debug messages set by this command in the log.
 void debug(String message) {
   stdout.writeln("::debug::$message");
 }
 
+/// Prints a (default) info message to the log.
 void info(String message) {
   stdout.writeln(message);
 }
 
+/// Creates an error message and prints the message to the log.
+///
+/// This message will create an annotation, which can associate the message with
+/// a particular file in your repository. Optionally, your message can specify a
+/// position within the file by configuring [parameters].
 void error(String message,
     [AnnotationProperties parameters = const AnnotationProperties.empty()]) {
   String output = "::error";
@@ -16,6 +30,11 @@ void error(String message,
   stdout.writeln(output);
 }
 
+/// Creates a notice message and prints the message to the log.
+///
+/// This message will create an annotation, which can associate the message with
+/// a particular file in your repository. Optionally, your message can specify a
+/// position within the file by configuring [parameters].
 void notice(String message,
     [AnnotationProperties parameters = const AnnotationProperties.empty()]) {
   String output = "::notice";
@@ -24,6 +43,11 @@ void notice(String message,
   stdout.writeln(output);
 }
 
+/// Creates a warning message and prints the message to the log.
+///
+/// This message will create an annotation, which can associate the message with
+/// a particular file in your repository. Optionally, your message can specify a
+/// position within the file by configuring [parameters].
 void warning(String message,
     [AnnotationProperties parameters = const AnnotationProperties.empty()]) {
   String output = "::warning";
@@ -32,14 +56,21 @@ void warning(String message,
   stdout.writeln(output);
 }
 
+/// Begins an expandable group in the log.
 void startGroup(String name) {
   stdout.writeln("::group::$name");
 }
 
+/// Closes an expandable group in the log.
 void endGroup() {
   stdout.writeln("::endgroup::");
 }
 
+/// Creates an expandable group in the log.
+///
+/// To create a group, use the group command and specify a title. Anything you
+/// print to the log between the group and endgroup commands is nested inside an
+/// expandable entry in the log.
 void group(String name, Function func) {
   startGroup(name);
   func();
