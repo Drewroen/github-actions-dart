@@ -8,7 +8,7 @@ void error(String message,
     [LoggingParameters parameters = const LoggingParameters.empty()]) {
   String output = "::error";
   output += parameters.toString();
-  output += "::message";
+  output += "::$message";
   stdout.writeln(output);
 }
 
@@ -16,7 +16,7 @@ void notice(String message,
     [LoggingParameters parameters = const LoggingParameters.empty()]) {
   String output = "::notice";
   output += parameters.toString();
-  output += "::message";
+  output += "::$message";
   stdout.writeln(output);
 }
 
@@ -24,7 +24,7 @@ void warning(String message,
     [LoggingParameters parameters = const LoggingParameters.empty()]) {
   String output = "::warning";
   output += parameters.toString();
-  output += "::message";
+  output += "::$message";
   stdout.writeln(output);
 }
 
@@ -51,6 +51,7 @@ class LoggingParameters {
       this.endLine});
 
   toString() {
+    // TODO(drewroen): Update Logging Parameters to return the correct string
     return "";
   }
 
