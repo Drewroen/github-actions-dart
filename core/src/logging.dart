@@ -5,7 +5,7 @@ void debug(String message) {
 }
 
 void error(String message,
-    [LoggingParameters parameters = const LoggingParameters.empty()]) {
+    [AnnotationProperties parameters = const AnnotationProperties.empty()]) {
   String output = "::error";
   output += parameters.toString();
   output += "::$message";
@@ -13,7 +13,7 @@ void error(String message,
 }
 
 void notice(String message,
-    [LoggingParameters parameters = const LoggingParameters.empty()]) {
+    [AnnotationProperties parameters = const AnnotationProperties.empty()]) {
   String output = "::notice";
   output += parameters.toString();
   output += "::$message";
@@ -21,20 +21,28 @@ void notice(String message,
 }
 
 void warning(String message,
-    [LoggingParameters parameters = const LoggingParameters.empty()]) {
+    [AnnotationProperties parameters = const AnnotationProperties.empty()]) {
   String output = "::warning";
   output += parameters.toString();
   output += "::$message";
   stdout.writeln(output);
 }
 
-void group(String title, Function func) {
-  stdout.writeln("::group::$title");
-  func();
+void startGroup(String name) {
+  stdout.writeln("::group::$name");
+}
+
+void endGroup() {
   stdout.writeln("::endgroup::");
 }
 
-class LoggingParameters {
+void group(String name, Function func) {
+  startGroup(name);
+  func();
+  endGroup();
+}
+
+class AnnotationProperties {
   final String? title;
   final String? file;
   final int? col;
@@ -42,7 +50,7 @@ class LoggingParameters {
   final int? line;
   final int? endLine;
 
-  const LoggingParameters(
+  const AnnotationProperties(
       {this.title,
       this.file,
       this.col,
@@ -51,9 +59,9 @@ class LoggingParameters {
       this.endLine});
 
   toString() {
-    // TODO(drewroen): Update Logging Parameters to return the correct string
+    // TODO(drewroen): Update AnnotationProperties to return the correct string
     return "";
   }
 
-  const factory LoggingParameters.empty() = LoggingParameters;
+  const factory AnnotationProperties.empty() = AnnotationProperties;
 }
