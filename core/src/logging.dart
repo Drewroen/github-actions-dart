@@ -4,6 +4,10 @@ void debug(String message) {
   stdout.writeln("::debug::$message");
 }
 
+void info(String message) {
+  stdout.writeln(message);
+}
+
 void error(String message,
     [AnnotationProperties parameters = const AnnotationProperties.empty()]) {
   String output = "::error";
