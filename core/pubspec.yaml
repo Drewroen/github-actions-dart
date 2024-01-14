@@ -1,0 +1,12 @@
+name: core
+description: >-
+  The github actions core package rewritten in dart
+version: 0.0.1
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+  
+dependencies:
+  
+dev_dependencies:
+  test: '>=1.15.0 <2.0.0'
