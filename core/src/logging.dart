@@ -2,19 +2,26 @@
 ///
 /// For more information, see
 /// https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions
-import 'dart:io';
+import 'print_service.dart';
+
+PrintService _printService = PrintService();
+
+// @visibleForTesting
+// void setupOutput(IOSink newOutput) {
+//   _output = newOutput;
+// }
 
 /// Prints a debug message to the log.
 ///
 /// You must create a secret named ACTIONS_STEP_DEBUG with the value true to see
 /// the debug messages set by this command in the log.
 void debug(String message) {
-  stdout.writeln("::debug::$message");
+  _printService.writeln("::debug::$message");
 }
 
 /// Prints a (default) info message to the log.
 void info(String message) {
-  stdout.writeln(message);
+  _printService.writeln(message);
 }
 
 /// Creates an error message and prints the message to the log.
@@ -27,7 +34,7 @@ void error(String message,
   String output = "::error";
   output += parameters.toString();
   output += "::$message";
-  stdout.writeln(output);
+  _printService.writeln(output);
 }
 
 /// Creates a notice message and prints the message to the log.
@@ -40,7 +47,7 @@ void notice(String message,
   String output = "::notice";
   output += parameters.toString();
   output += "::$message";
-  stdout.writeln(output);
+  _printService.writeln(output);
 }
 
 /// Creates a warning message and prints the message to the log.
@@ -53,17 +60,17 @@ void warning(String message,
   String output = "::warning";
   output += parameters.toString();
   output += "::$message";
-  stdout.writeln(output);
+  _printService.writeln(output);
 }
 
 /// Begins an expandable group in the log.
 void startGroup(String name) {
-  stdout.writeln("::group::$name");
+  _printService.writeln("::group::$name");
 }
 
 /// Closes an expandable group in the log.
 void endGroup() {
-  stdout.writeln("::endgroup::");
+  _printService.writeln("::endgroup::");
 }
 
 /// Creates an expandable group in the log.
