@@ -2,14 +2,14 @@
 ///
 /// For more information, see
 /// https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions
+import 'package:meta/meta.dart';
+
 import 'print_service.dart';
 
 PrintService _printService = PrintService();
 
-// @visibleForTesting
-// void setupOutput(IOSink newOutput) {
-//   _output = newOutput;
-// }
+@visibleForTesting
+void injectPrintService(PrintService service) => _printService = service;
 
 /// Prints a debug message to the log.
 ///
