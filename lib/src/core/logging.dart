@@ -2,11 +2,13 @@
 ///
 /// For more information, see
 /// https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions
+import 'dart:io';
+
 import 'package:meta/meta.dart';
 
 import 'print_service.dart';
 
-PrintService _printService = PrintService();
+PrintService _printService = PrintService(stdout);
 
 @visibleForTesting
 void injectPrintService(PrintService service) => _printService = service;
