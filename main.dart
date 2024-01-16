@@ -1,4 +1,4 @@
-import 'core/core.dart' as core;
+import 'lib/core.dart' as core;
 
 Future<void> main(List<String> arguments) async {
   core.debug("Debug!");

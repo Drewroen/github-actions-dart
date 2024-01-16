@@ -1,3 +1,3 @@
 library github_actions_dart_core;
 
-export 'src/logging.dart';
+export 'src/core/logging.dart';
