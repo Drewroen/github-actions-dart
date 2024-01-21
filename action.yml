@@ -5,6 +5,10 @@ inputs:
     description: 'An input for testing'
     required: true
     default: 'Test Input!'
+  test-input-boolean:
+    description: 'An input boolean for testing'
+    required: true
+    default: FALSE
 outputs:
   test-output:
     description: 'A test output'

@@ -4,8 +4,16 @@ import 'dart:io';
 ///
 /// For more information, see
 /// https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions
+final List<String> TRUE_VALUES = ['true', 'True', 'TRUE'];
+final List<String> FALSE_VALUES = ['false', 'False', 'FALSE'];
 
 getInput(String name) {
-  Map<String, String> envVars = Platform.environment;
-  return envVars['INPUT_${name.toUpperCase()}'] ?? '';
+  return Platform.environment['INPUT_${name.toUpperCase()}'] ?? '';
+}
+
+getBooleanInput(String name) {
+  String value = getInput(name);
+  if (TRUE_VALUES.contains(value)) return true;
+  if (FALSE_VALUES.contains(value)) return false;
+  throw ArgumentError("Invalid argument. Must be true or false in one of the following forms: ${[TRUE_VALUES.join(','), FALSE_VALUES.join(',')].join(',')}")
 }
