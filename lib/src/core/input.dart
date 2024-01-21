@@ -7,5 +7,5 @@ import 'dart:io';
 
 getInput(String name) {
   Map<String, String> envVars = Platform.environment;
-  return envVars['INPUT_$name'] ?? '';
+  return envVars['INPUT_${name.toUpperCase()}'] ?? '';
 }
