@@ -13,9 +13,6 @@ void PrintTests() {
   core.error("Error!");
   core.notice("Notice!");
   core.warning("Warning!");
-  core.startGroup("Group!");
-  core.info("Info within group!");
-  core.endGroup();
 }
 
 void InputTests() {
