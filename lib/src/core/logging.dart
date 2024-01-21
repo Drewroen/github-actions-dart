@@ -1,4 +1,4 @@
-/// This package covers different ways to log messages in a Github Action.
+/// This package covers different methods to log messages in a Github Action.
 ///
 /// For more information, see
 /// https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions
@@ -31,10 +31,10 @@ void info(String message) {
 /// This message will create an annotation, which can associate the message with
 /// a particular file in your repository. Optionally, your message can specify a
 /// position within the file by configuring [parameters].
-void error(String message,
-    [AnnotationProperties parameters = const AnnotationProperties.empty()]) {
+void error(String message, {AnnotationProperties? properties}) {
+  properties = properties ?? AnnotationProperties.empty();
   String output = "::error";
-  output += parameters.toString();
+  output += properties.toString();
   output += "::$message";
   _printService.writeln(output);
 }
@@ -44,10 +44,10 @@ void error(String message,
 /// This message will create an annotation, which can associate the message with
 /// a particular file in your repository. Optionally, your message can specify a
 /// position within the file by configuring [parameters].
-void notice(String message,
-    [AnnotationProperties parameters = const AnnotationProperties.empty()]) {
+void notice(String message, {AnnotationProperties? properties}) {
+  properties = properties ?? AnnotationProperties.empty();
   String output = "::notice";
-  output += parameters.toString();
+  output += properties.toString();
   output += "::$message";
   _printService.writeln(output);
 }
@@ -57,10 +57,10 @@ void notice(String message,
 /// This message will create an annotation, which can associate the message with
 /// a particular file in your repository. Optionally, your message can specify a
 /// position within the file by configuring [parameters].
-void warning(String message,
-    [AnnotationProperties parameters = const AnnotationProperties.empty()]) {
+void warning(String message, {AnnotationProperties? properties}) {
+  properties = properties ?? AnnotationProperties.empty();
   String output = "::warning";
-  output += parameters.toString();
+  output += properties.toString();
   output += "::$message";
   _printService.writeln(output);
 }
@@ -103,9 +103,30 @@ class AnnotationProperties {
       this.endLine});
 
   toString() {
-    // TODO(drewroen): Update AnnotationProperties to return the correct string
-    return "";
+    if (_isEmpty()) {
+      return "";
+    }
+    List<String> validAnnotations = [];
+    if (title != null) validAnnotations.add("title=$title");
+    if (file != null) validAnnotations.add("file=$file");
+    if (col != null) validAnnotations.add("col=$col");
+    if (endColumn != null) validAnnotations.add("endColumn=$endColumn");
+    if (line != null) validAnnotations.add("line=$line");
+    if (endLine != null) validAnnotations.add("endLine=$endLine");
+    return " " + validAnnotations.join(",");
   }
 
-  const factory AnnotationProperties.empty() = AnnotationProperties;
+  bool _isEmpty() {
+    if (title != null) return false;
+    if (file != null) return false;
+    if (col != null) return false;
+    if (endColumn != null) return false;
+    if (line != null) return false;
+    if (endLine != null) return false;
+    return true;
+  }
+
+  factory AnnotationProperties.empty() {
+    return AnnotationProperties();
+  }
 }

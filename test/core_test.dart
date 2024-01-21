@@ -43,6 +43,13 @@ void main() {
       expect(fakeIOSink.outputs[0], "::error::Hello");
     });
 
+    test('Sends an error message with annotation properties', () {
+      core.error("Hello",
+          properties: core.AnnotationProperties(file: "file.txt", line: 1));
+      expect(fakeIOSink.outputs.length, 1);
+      expect(fakeIOSink.outputs[0], "::error file=file.txt,line=1::Hello");
+    });
+
     test('Sends a message that starts a group', () {
       core.startGroup("Hello");
       expect(fakeIOSink.outputs.length, 1);
