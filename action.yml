@@ -1,13 +1,13 @@
-name: 'Hello World in Dart'
-description: 'Greet someone and record the time'
+name: 'Test Github Action'
+description: 'A Github Action used for testing various core functionalities'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  test-input:
+    description: 'An input for testing'
     required: true
-    default: 'World'
+    default: 'Test Input!'
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  test-output:
+    description: 'A test output'
 runs:
   using: 'node20'
   main: 'index.js'

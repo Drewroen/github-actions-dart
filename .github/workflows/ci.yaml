@@ -10,7 +10,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: dart-lang/setup-dart@v1
-      - run: dart pub get
-      - uses: ./
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1
+      - name: dart pub get
+        run: dart pub get
+      - name: Test local action
+        uses: ./
