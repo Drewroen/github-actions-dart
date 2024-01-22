@@ -15,5 +15,9 @@ getBooleanInput(String name) {
   String value = getInput(name);
   if (TRUE_VALUES.contains(value)) return true;
   if (FALSE_VALUES.contains(value)) return false;
-  throw ArgumentError("Invalid argument. Must be true or false in one of the following forms: ${[TRUE_VALUES.join(','), FALSE_VALUES.join(',')].join(',')}")
+  throw ArgumentError(
+      "Invalid argument. Must be true or false in one of the following forms: ${[
+    TRUE_VALUES.join(','),
+    FALSE_VALUES.join(',')
+  ].join(',')}");
 }
