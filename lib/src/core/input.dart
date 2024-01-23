@@ -7,11 +7,11 @@ import 'dart:io';
 final List<String> TRUE_VALUES = ['true', 'True', 'TRUE'];
 final List<String> FALSE_VALUES = ['false', 'False', 'FALSE'];
 
-getInput(String name) {
+String getInput(String name) {
   return Platform.environment['INPUT_${name.toUpperCase()}'] ?? '';
 }
 
-getBooleanInput(String name) {
+bool getBooleanInput(String name) {
   String value = getInput(name);
   if (TRUE_VALUES.contains(value)) return true;
   if (FALSE_VALUES.contains(value)) return false;

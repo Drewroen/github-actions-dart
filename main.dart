@@ -18,4 +18,6 @@ void PrintTests() {
 void InputTests() {
   String value = getInput("test-input");
   core.info("The value of test-input is $value");
+  bool booleanValue = getBooleanInput("test-input-boolean");
+  core.info("The value of test-input-boolean is $booleanValue");
 }
