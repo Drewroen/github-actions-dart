@@ -20,4 +20,6 @@ void InputTests() {
   core.info("The value of test-input is $value");
   bool booleanValue = getBooleanInput("test-input-boolean");
   core.info("The value of test-input-boolean is $booleanValue");
+  List<String> multilineValue = getMultilineInput("test-input-multiline");
+  core.info("The value of test-input-multiline is $multilineValue");
 }

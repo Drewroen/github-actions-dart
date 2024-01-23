@@ -1,0 +1,20 @@
+name: Dart Github Action Unit Tests
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1
+      - name: dart pub get
+        run: dart pub get
+      - name: Run unit tests
+        run: dart test

@@ -1,4 +1,4 @@
-name: Dart
+name: Dart Github Action Test
 
 on:
   pull_request:
@@ -18,3 +18,12 @@ jobs:
         run: dart pub get
       - name: Test local action
         uses: ./
+        with:
+          test-input: "This is my test input"
+          test-input-boolean: TRUE
+          test-input-multiline: |
+            This
+            is
+            my
+            multiline
+            input

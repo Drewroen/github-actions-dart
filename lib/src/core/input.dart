@@ -21,3 +21,8 @@ bool getBooleanInput(String name) {
     FALSE_VALUES.join(',')
   ].join(',')}");
 }
+
+List<String> getMultilineInput(String name) {
+  String value = getInput(name);
+  return value.split("\n").where((line) => (line != "")).toList();
+}
