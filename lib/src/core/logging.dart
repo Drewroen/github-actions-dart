@@ -32,9 +32,8 @@ void info(String message) {
 /// a particular file in your repository. Optionally, your message can specify a
 /// position within the file by configuring [parameters].
 void error(String message, {AnnotationProperties? properties}) {
-  properties = properties ?? AnnotationProperties.empty();
   String output = "::error";
-  output += properties.toString();
+  output += properties?.toString() ?? "";
   output += "::$message";
   _printService.writeln(output);
 }
@@ -45,9 +44,8 @@ void error(String message, {AnnotationProperties? properties}) {
 /// a particular file in your repository. Optionally, your message can specify a
 /// position within the file by configuring [parameters].
 void notice(String message, {AnnotationProperties? properties}) {
-  properties = properties ?? AnnotationProperties.empty();
   String output = "::notice";
-  output += properties.toString();
+  output += properties?.toString() ?? "";
   output += "::$message";
   _printService.writeln(output);
 }
@@ -58,9 +56,8 @@ void notice(String message, {AnnotationProperties? properties}) {
 /// a particular file in your repository. Optionally, your message can specify a
 /// position within the file by configuring [parameters].
 void warning(String message, {AnnotationProperties? properties}) {
-  properties = properties ?? AnnotationProperties.empty();
   String output = "::warning";
-  output += properties.toString();
+  output += properties?.toString() ?? "";
   output += "::$message";
   _printService.writeln(output);
 }

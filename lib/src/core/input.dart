@@ -29,7 +29,7 @@ bool getBooleanInput(String name, {InputOptions? options}) {
   if (TRUE_VALUES.contains(value)) return true;
   if (FALSE_VALUES.contains(value)) return false;
   throw ArgumentError(
-      "Invalid argument. Must be true or false in one of the following forms: ${[
+      "Invalid value. The input value: ($value) must be true or false in one of the following forms: ${[
     TRUE_VALUES.join(','),
     FALSE_VALUES.join(',')
   ].join(',')}");
@@ -37,7 +37,15 @@ bool getBooleanInput(String name, {InputOptions? options}) {
 
 List<String> getMultilineInput(String name, {InputOptions? options}) {
   String value = getInput(name);
-  return value.split("\n").where((line) => (line != "")).toList();
+
+  List<String> response = value.split("\n");
+
+  response = response.where((line) => (line != "")).toList();
+
+  if (options != null && options.trimWhitespace!)
+    response = response.map((line) => line.trim()).toList();
+
+  return response;
 }
 
 class InputOptions {
