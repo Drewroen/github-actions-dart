@@ -1,4 +1,4 @@
-/// This package covers different methods related to Github inputs
+/// This package covers different methods related to Github inputs.
 ///
 /// For more information, see
 /// https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions
@@ -15,11 +15,16 @@ void injectEnvironmentVariables(Map<String, String> environment) =>
 final List<String> TRUE_VALUES = ['true', 'True', 'TRUE'];
 final List<String> FALSE_VALUES = ['false', 'False', 'FALSE'];
 
-String getInput(String name) {
-  return _environment['INPUT_${name.toUpperCase()}'] ?? '';
+String getInput(String name, {InputOptions? options}) {
+  String value = _environment['INPUT_${name.toUpperCase()}'] ?? '';
+  if (options?.required == true && value == '')
+    throw ArgumentError(
+        "Value for $name does not exist, but is marked required.");
+  if (options?.trimWhitespace == true) value = value.trim();
+  return value;
 }
 
-bool getBooleanInput(String name) {
+bool getBooleanInput(String name, {InputOptions? options}) {
   String value = getInput(name);
   if (TRUE_VALUES.contains(value)) return true;
   if (FALSE_VALUES.contains(value)) return false;
@@ -30,7 +35,16 @@ bool getBooleanInput(String name) {
   ].join(',')}");
 }
 
-List<String> getMultilineInput(String name) {
+List<String> getMultilineInput(String name, {InputOptions? options}) {
   String value = getInput(name);
   return value.split("\n").where((line) => (line != "")).toList();
+}
+
+class InputOptions {
+  bool? required;
+  bool? trimWhitespace;
+
+  InputOptions({this.required, this.trimWhitespace});
+
+  factory InputOptions.empty() => InputOptions();
 }
