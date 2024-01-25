@@ -115,6 +115,8 @@ void main() {
       "INPUT_BOOL_FALSE_2": "false",
       "INPUT_BOOL_FALSE_3": "False",
       "INPUT_STRING_MULTILINE": "ABC\nDEF\nGHI\nJKL",
+      "INPUT_STRING_MULTILINE_WITH_SPACES":
+          "        ABC    \n  DEF   \nGHI   \n    JKL",
     };
     setUp(() {
       core.injectEnvironmentVariables(fakeEnvironmentVariables);
@@ -129,6 +131,17 @@ void main() {
       test('Returns an empty string if the environment variable is empty', () {
         String value = core.getInput("MISSING_VALUE");
         expect(value, "");
+      });
+
+      test(
+          'Throws an error if the environment variable is empty and required is true',
+          () {
+        try {
+          core.getInput("MISSING_VALUE",
+              options: core.InputOptions(required: true));
+        } catch (e) {
+          expect(e.runtimeType, ArgumentError);
+        }
       });
     });
 
@@ -148,6 +161,14 @@ void main() {
           expect(value, false);
         });
       }
+
+      test("Throws an error if the environment variable is empty", () {
+        try {
+          core.getBooleanInput("MISSING_VALUE");
+        } catch (e) {
+          expect(e.runtimeType, ArgumentError);
+        }
+      });
     });
 
     group('core.getMultilineInput', () {
@@ -155,6 +176,25 @@ void main() {
         List<String> value = core.getMultilineInput("STRING_MULTILINE");
         expect(value.length, 4);
         expect(value.join(","), "ABC,DEF,GHI,JKL");
+      });
+
+      test("Returns a list of strings when getting a multiline variable", () {
+        List<String> value = core.getMultilineInput(
+            "STRING_MULTILINE_WITH_SPACES",
+            options: core.InputOptions(trimWhitespace: true));
+        expect(value.length, 4);
+        expect(value.join(","), "ABC,DEF,GHI,JKL");
+      });
+
+      test(
+          'Throws an error if the environment variable is empty and required is true',
+          () {
+        try {
+          core.getMultilineInput("MISSING_VALUE",
+              options: core.InputOptions(required: true));
+        } catch (e) {
+          expect(e.runtimeType, ArgumentError);
+        }
       });
     });
   });

@@ -25,7 +25,7 @@ String getInput(String name, {InputOptions? options}) {
 }
 
 bool getBooleanInput(String name, {InputOptions? options}) {
-  String value = getInput(name);
+  String value = getInput(name, options: options);
   if (TRUE_VALUES.contains(value)) return true;
   if (FALSE_VALUES.contains(value)) return false;
   throw ArgumentError(
@@ -36,7 +36,7 @@ bool getBooleanInput(String name, {InputOptions? options}) {
 }
 
 List<String> getMultilineInput(String name, {InputOptions? options}) {
-  String value = getInput(name);
+  String value = getInput(name, options: options);
 
   List<String> response = value.split("\n");
 
