@@ -15,16 +15,18 @@ void injectEnvironmentVariables(Map<String, String> environment) =>
 final List<String> TRUE_VALUES = ['true', 'True', 'TRUE'];
 final List<String> FALSE_VALUES = ['false', 'False', 'FALSE'];
 
-String getInput(String name, {InputOptions? options}) {
+String getInput(String name,
+    {InputOptions options = const InputOptions.empty()}) {
   String value = _environment['INPUT_${name.toUpperCase()}'] ?? '';
-  if (options?.required == true && value == '')
+  if (options.required == true && value == '')
     throw ArgumentError(
         "Value for $name does not exist, but is marked required.");
-  if (options?.trimWhitespace == true) value = value.trim();
+  if (options.trimWhitespace == true) value = value.trim();
   return value;
 }
 
-bool getBooleanInput(String name, {InputOptions? options}) {
+bool getBooleanInput(String name,
+    {InputOptions options = const InputOptions.empty()}) {
   String value = getInput(name, options: options);
   if (TRUE_VALUES.contains(value)) return true;
   if (FALSE_VALUES.contains(value)) return false;
@@ -35,24 +37,25 @@ bool getBooleanInput(String name, {InputOptions? options}) {
   ].join(',')}");
 }
 
-List<String> getMultilineInput(String name, {InputOptions? options}) {
+List<String> getMultilineInput(String name,
+    {InputOptions options = const InputOptions.empty()}) {
   String value = getInput(name, options: options);
 
   List<String> response = value.split("\n");
 
   response = response.where((line) => (line != "")).toList();
 
-  if (options != null && options.trimWhitespace!)
+  if (options.trimWhitespace)
     response = response.map((line) => line.trim()).toList();
 
   return response;
 }
 
 class InputOptions {
-  bool? required;
-  bool? trimWhitespace;
+  final bool required;
+  final bool trimWhitespace;
 
-  InputOptions({this.required, this.trimWhitespace});
+  const InputOptions({this.required = false, this.trimWhitespace = false});
 
-  factory InputOptions.empty() => InputOptions();
+  const factory InputOptions.empty() = InputOptions;
 }

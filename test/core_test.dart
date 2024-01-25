@@ -65,6 +65,45 @@ void main() {
         expect(fakeIOSink.outputs[0],
             "::error title=MY TITLE,file=file.txt,col=1,endColumn=20,line=1,endLine=2::Hello");
       });
+
+      test('Sends a message with title annotation property', () {
+        core.error("Hello",
+            properties: core.AnnotationProperties(title: "MY TITLE"));
+        expect(fakeIOSink.outputs.length, 1);
+        expect(fakeIOSink.outputs[0], "::error title=MY TITLE::Hello");
+      });
+
+      test('Sends a message with file annotation property', () {
+        core.error("Hello",
+            properties: core.AnnotationProperties(file: "file.txt"));
+        expect(fakeIOSink.outputs.length, 1);
+        expect(fakeIOSink.outputs[0], "::error file=file.txt::Hello");
+      });
+
+      test('Sends a message with col annotation property', () {
+        core.error("Hello", properties: core.AnnotationProperties(col: 1));
+        expect(fakeIOSink.outputs.length, 1);
+        expect(fakeIOSink.outputs[0], "::error col=1::Hello");
+      });
+
+      test('Sends a message with endColumn annotation property', () {
+        core.error("Hello",
+            properties: core.AnnotationProperties(endColumn: 20));
+        expect(fakeIOSink.outputs.length, 1);
+        expect(fakeIOSink.outputs[0], "::error endColumn=20::Hello");
+      });
+
+      test('Sends a message with line annotation property', () {
+        core.error("Hello", properties: core.AnnotationProperties(line: 1));
+        expect(fakeIOSink.outputs.length, 1);
+        expect(fakeIOSink.outputs[0], "::error line=1::Hello");
+      });
+
+      test('Sends a message with endLine annotation property', () {
+        core.error("Hello", properties: core.AnnotationProperties(endLine: 2));
+        expect(fakeIOSink.outputs.length, 1);
+        expect(fakeIOSink.outputs[0], "::error endLine=2::Hello");
+      });
     });
 
     group('core.startGroup', () {

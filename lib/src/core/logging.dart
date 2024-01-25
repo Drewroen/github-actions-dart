@@ -31,10 +31,9 @@ void info(String message) {
 /// This message will create an annotation, which can associate the message with
 /// a particular file in your repository. Optionally, your message can specify a
 /// position within the file by configuring [parameters].
-void error(String message, {AnnotationProperties? properties}) {
-  String output = "::error";
-  output += properties?.toString() ?? "";
-  output += "::$message";
+void error(String message,
+    {AnnotationProperties properties = const AnnotationProperties.empty()}) {
+  String output = "::error${properties.toString()}::$message";
   _printService.writeln(output);
 }
 
@@ -43,10 +42,9 @@ void error(String message, {AnnotationProperties? properties}) {
 /// This message will create an annotation, which can associate the message with
 /// a particular file in your repository. Optionally, your message can specify a
 /// position within the file by configuring [parameters].
-void notice(String message, {AnnotationProperties? properties}) {
-  String output = "::notice";
-  output += properties?.toString() ?? "";
-  output += "::$message";
+void notice(String message,
+    {AnnotationProperties properties = const AnnotationProperties.empty()}) {
+  String output = "::notice${properties.toString()}::$message";
   _printService.writeln(output);
 }
 
@@ -55,10 +53,9 @@ void notice(String message, {AnnotationProperties? properties}) {
 /// This message will create an annotation, which can associate the message with
 /// a particular file in your repository. Optionally, your message can specify a
 /// position within the file by configuring [parameters].
-void warning(String message, {AnnotationProperties? properties}) {
-  String output = "::warning";
-  output += properties?.toString() ?? "";
-  output += "::$message";
+void warning(String message,
+    {AnnotationProperties properties = const AnnotationProperties.empty()}) {
+  String output = "::warning${properties.toString()}::$message";
   _printService.writeln(output);
 }
 
@@ -82,14 +79,14 @@ void group(String name, Function func) {
 }
 
 class AnnotationProperties {
-  String? title;
-  String? file;
-  int? col;
-  int? endColumn;
-  int? line;
-  int? endLine;
+  final String? title;
+  final String? file;
+  final int? col;
+  final int? endColumn;
+  final int? line;
+  final int? endLine;
 
-  AnnotationProperties(
+  const AnnotationProperties(
       {this.title,
       this.file,
       this.col,
@@ -121,5 +118,5 @@ class AnnotationProperties {
     return true;
   }
 
-  factory AnnotationProperties.empty() => AnnotationProperties();
+  const factory AnnotationProperties.empty() = AnnotationProperties;
 }
