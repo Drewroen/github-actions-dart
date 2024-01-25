@@ -7,8 +7,11 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  test-action:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./core
     steps:
       - name: Checkout
         uses: actions/checkout@v4

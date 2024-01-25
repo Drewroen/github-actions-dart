@@ -1,4 +1,4 @@
-import 'package:core/src/core/input.dart';
+import 'lib/src/core/input.dart';
 
 import 'lib/core.dart' as core;
 

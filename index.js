@@ -4,7 +4,7 @@ const path = require('path');
 
 async function run() {
     try {
-        process.exitCode = await exec.exec('dart', ['main.dart']);
+        process.exitCode = await exec.exec('dart', ['core/main.dart']);
     } catch (error) {
         core.setFailed(error.message);
     }
