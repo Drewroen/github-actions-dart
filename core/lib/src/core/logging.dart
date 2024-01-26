@@ -1,7 +1,8 @@
-/// This package covers different methods to log messages in a Github Action.
+/// This file provides methods for handling various logging related operations.
 ///
-/// For more information, see
-/// https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions
+/// For detailed information on GitHub Actions workflow commands, refer to
+/// [GitHub Actions Documentation](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions).
+
 import 'dart:io';
 
 import 'package:meta/meta.dart';
