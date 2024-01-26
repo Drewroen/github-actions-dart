@@ -1,6 +1,6 @@
-import 'lib/src/core/input.dart';
+import '../core/lib/src/core/input.dart';
 
-import 'lib/core.dart' as core;
+import '../core/lib/core.dart' as core;
 
 Future<void> main(List<String> arguments) async {
   core.group("Message tests", () => PrintTests());
