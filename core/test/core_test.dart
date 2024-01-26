@@ -1,15 +1,14 @@
-import 'package:core/src/core/print_service.dart';
 import 'package:test/test.dart';
 import 'package:core/core.dart' as core;
 import 'fakes/fake_ioSink.dart';
 
 void main() {
   group('Logging tests:', () {
-    late PrintService printService;
+    late core.PrintService printService;
     late FakeIOSink fakeIOSink;
     setUp(() {
       fakeIOSink = FakeIOSink();
-      printService = PrintService(fakeIOSink);
+      printService = core.PrintService(fakeIOSink);
       core.injectPrintService(printService);
     });
 
