@@ -1,14 +1,16 @@
+import 'package:core/src/service/environment_service.dart';
+import 'package:core/src/service/print_service.dart';
 import 'package:test/test.dart';
 import 'package:core/core.dart' as core;
 import 'fakes/fake_ioSink.dart';
 
 void main() {
   group('Logging tests:', () {
-    late core.PrintService printService;
+    late PrintService printService;
     late FakeIOSink fakeIOSink;
     setUp(() {
       fakeIOSink = FakeIOSink();
-      printService = core.PrintService(fakeIOSink);
+      printService = PrintService(fakeIOSink);
       core.injectPrintService(printService);
     });
 
@@ -157,7 +159,8 @@ void main() {
           "        ABC    \n  DEF   \nGHI   \n    JKL",
     };
     setUp(() {
-      core.injectEnvironmentVariables(fakeEnvironmentVariables);
+      core.injectEnvironmentVariables(
+          EnvironmentService(fakeEnvironmentVariables));
     });
 
     group('core.getInput', () {

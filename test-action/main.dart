@@ -1,5 +1,3 @@
-import '../core/lib/src/core/input.dart';
-
 import '../core/lib/core.dart' as core;
 
 Future<void> main(List<String> arguments) async {
@@ -16,10 +14,10 @@ void PrintTests() {
 }
 
 void InputTests() {
-  String value = getInput("test-input");
+  String value = core.getInput("test-input");
   core.info("The value of test-input is $value");
-  bool booleanValue = getBooleanInput("test-input-boolean");
+  bool booleanValue = core.getBooleanInput("test-input-boolean");
   core.info("The value of test-input-boolean is $booleanValue");
-  List<String> multilineValue = getMultilineInput("test-input-multiline");
+  List<String> multilineValue = core.getMultilineInput("test-input-multiline");
   core.info("The value of test-input-multiline is $multilineValue");
 }
