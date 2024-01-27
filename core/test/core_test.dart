@@ -11,7 +11,7 @@ void main() {
     setUp(() {
       fakeIOSink = FakeIOSink();
       printService = PrintService(fakeIOSink);
-      core.injectPrintService(printService);
+      injectPrintService(printService);
     });
 
     group('core.info', () {
@@ -159,8 +159,7 @@ void main() {
           "        ABC    \n  DEF   \nGHI   \n    JKL",
     };
     setUp(() {
-      core.injectEnvironmentVariables(
-          EnvironmentService(fakeEnvironmentVariables));
+      injectEnvironmentService(EnvironmentService(fakeEnvironmentVariables));
     });
 
     group('core.getInput', () {

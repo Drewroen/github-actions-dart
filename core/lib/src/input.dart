@@ -3,17 +3,7 @@
 /// For detailed information on GitHub Actions workflow commands, refer to
 /// [GitHub Actions Documentation](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions).
 
-import 'dart:io';
-
-import 'package:core/core.dart';
-import 'package:meta/meta.dart';
-
-EnvironmentService _environmentService =
-    EnvironmentService(Platform.environment);
-
-@visibleForTesting
-void injectEnvironmentVariables(EnvironmentService environmentService) =>
-    _environmentService = environmentService;
+import 'package:core/src/service/environment_service.dart';
 
 final List<String> TRUE_VALUES = ['true', 'True', 'TRUE'];
 final List<String> FALSE_VALUES = ['false', 'False', 'FALSE'];
@@ -24,7 +14,7 @@ final List<String> FALSE_VALUES = ['false', 'False', 'FALSE'];
 /// [ArgumentError] if the value doesn't exist and is [options.required].
 String getInput(String name,
     {InputOptions options = const InputOptions.empty()}) {
-  String value = _environmentService
+  String value = environmentService
           .getEnvironmentVariable('INPUT_${name.toUpperCase()}') ??
       '';
   if (options.required == true && value == '')

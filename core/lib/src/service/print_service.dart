@@ -1,5 +1,13 @@
 import 'dart:io';
 
+import 'package:meta/meta.dart';
+
+PrintService printService = PrintService(stdout);
+
+@visibleForTesting
+void injectPrintService(PrintService _printService) =>
+    printService = _printService;
+
 class PrintService {
   late IOSink out;
 

@@ -1,31 +1,16 @@
-/// This file provides methods for handling various logging related operations.
-///
-/// For detailed information on GitHub Actions workflow commands, refer to
-/// [GitHub Actions Documentation](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions).
-
-import 'dart:io';
-
-import 'package:core/core.dart';
-import 'package:meta/meta.dart';
-
-// import 'service/print_service.dart';
-
-PrintService _printService = PrintService(stdout);
-
-@visibleForTesting
-void injectPrintService(PrintService service) => _printService = service;
+import 'package:core/src/service/print_service.dart';
 
 /// Prints [message] as a debug message to the log.
 ///
 /// You must create a secret named ACTIONS_STEP_DEBUG with the value true to see
 /// the debug messages set by this command in the log.
 void debug(String message) {
-  _printService.writeln("::debug::$message");
+  printService.writeln("::debug::$message");
 }
 
 /// Prints [message] as a (default) info message to the log.
 void info(String message) {
-  _printService.writeln(message);
+  printService.writeln(message);
 }
 
 /// Prints [message] as an error message and prints the message to the log.
@@ -36,7 +21,7 @@ void info(String message) {
 void error(String message,
     {AnnotationProperties properties = const AnnotationProperties.empty()}) {
   String output = "::error${properties.toString()}::$message";
-  _printService.writeln(output);
+  printService.writeln(output);
 }
 
 /// Prints [message] as a notice message and prints the message to the log.
@@ -47,7 +32,7 @@ void error(String message,
 void notice(String message,
     {AnnotationProperties properties = const AnnotationProperties.empty()}) {
   String output = "::notice${properties.toString()}::$message";
-  _printService.writeln(output);
+  printService.writeln(output);
 }
 
 /// Prints [message] as a warning message and prints the message to the log.
@@ -58,17 +43,17 @@ void notice(String message,
 void warning(String message,
     {AnnotationProperties properties = const AnnotationProperties.empty()}) {
   String output = "::warning${properties.toString()}::$message";
-  _printService.writeln(output);
+  printService.writeln(output);
 }
 
 /// Begins an expandable group in the log named [name].
 void startGroup(String name) {
-  _printService.writeln("::group::$name");
+  printService.writeln("::group::$name");
 }
 
 /// Closes an expandable group in the log.
 void endGroup() {
-  _printService.writeln("::endgroup::");
+  printService.writeln("::endgroup::");
 }
 
 /// Creates an expandable group in the log named [name].

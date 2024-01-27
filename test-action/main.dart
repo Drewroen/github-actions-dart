@@ -3,6 +3,7 @@ import '../core/lib/core.dart' as core;
 Future<void> main(List<String> arguments) async {
   core.group("Message tests", () => PrintTests());
   core.group("Input tests", () => InputTests());
+  core.group("Export tests", () => ExportTests());
 }
 
 void PrintTests() {
@@ -20,4 +21,8 @@ void InputTests() {
   core.info("The value of test-input-boolean is $booleanValue");
   List<String> multilineValue = core.getMultilineInput("test-input-multiline");
   core.info("The value of test-input-multiline is $multilineValue");
+}
+
+void ExportTests() {
+  core.exportVariable("Test", "123");
 }
