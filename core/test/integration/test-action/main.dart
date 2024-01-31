@@ -1,9 +1,10 @@
-import '../core/lib/core.dart' as core;
+import '../../../../core/lib/core.dart' as core;
 
 Future<void> main(List<String> arguments) async {
   core.group("Message tests", () => PrintTests());
   core.group("Input tests", () => InputTests());
   core.group("Export tests", () => ExportTests());
+  core.group("Output tests", () => OutputTests());
 }
 
 void PrintTests() {
@@ -25,4 +26,8 @@ void InputTests() {
 
 void ExportTests() {
   core.exportVariable("Test", "123");
+}
+
+void OutputTests() {
+  core.setOutput("test-output", "OUTPUT SUCCESSFUL!");
 }

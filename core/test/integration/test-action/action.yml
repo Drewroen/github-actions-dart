@@ -9,6 +9,11 @@ inputs:
     description: 'An input boolean for testing'
     required: true
     default: FALSE
+  test-input-multiline:
+    description: 'A multiline input for testing'
+    required: true
+    default: 'Test
+      Input!'
 outputs:
   test-output:
     description: 'A test output'
