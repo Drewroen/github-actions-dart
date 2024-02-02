@@ -5,8 +5,8 @@
 
 import 'package:core/src/service/environment_service.dart';
 
-final List<String> TRUE_VALUES = ['true', 'True', 'TRUE'];
-final List<String> FALSE_VALUES = ['false', 'False', 'FALSE'];
+final List<String> _TRUE_VALUES = ['true', 'True', 'TRUE'];
+final List<String> _FALSE_VALUES = ['false', 'False', 'FALSE'];
 
 /// Retrieves the environment variable [name].
 ///
@@ -27,21 +27,21 @@ String getInput(String name,
 /// Retrieves the boolean environment variable [name].
 ///
 /// Throws [ArgumentError] if the value doesn't exist and is [options.required]
-/// or if the value is not a boolean representation, seen in [TRUE_VALUES] or
-/// [FALSE_VALUES].
+/// or if the value is not a boolean representation, seen in [_TRUE_VALUES] or
+/// [_FALSE_VALUES].
 bool getBooleanInput(String name,
     {InputOptions options = const InputOptions.empty()}) {
   String value = getInput(name, options: options);
-  if (TRUE_VALUES.contains(value)) {
+  if (_TRUE_VALUES.contains(value)) {
     return true;
   }
-  if (FALSE_VALUES.contains(value)) {
+  if (_FALSE_VALUES.contains(value)) {
     return false;
   }
   throw ArgumentError(
       "Invalid value. The input value: ($value) must be true or false in one of the following forms: ${[
-    TRUE_VALUES.join(','),
-    FALSE_VALUES.join(',')
+    _TRUE_VALUES.join(','),
+    _FALSE_VALUES.join(',')
   ].join(',')}");
 }
 
