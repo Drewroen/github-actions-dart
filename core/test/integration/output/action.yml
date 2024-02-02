@@ -1,5 +1,10 @@
 name: 'Core Output Testing'
 description: 'A Github Action used for testing output'
+inputs:
+  TEST_PATH:
+    description: 'The path of the dart file that is run'
+    required: true
+    default: 'core/test/integration/output/main.dart'
 outputs:
   TEST_OUTPUT:
     description: 'A test output'

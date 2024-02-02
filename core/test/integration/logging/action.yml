@@ -1,5 +1,10 @@
 name: 'Core Logging Testing'
 description: 'A Github Action used for testing logging'
+inputs:
+  TEST_PATH:
+    description: 'The path of the dart file that is run'
+    required: true
+    default: 'core/test/integration/logging/main.dart'
 runs:
   using: 'node20'
   main: '../index.js'

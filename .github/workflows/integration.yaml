@@ -19,10 +19,8 @@ jobs:
         uses: dart-lang/setup-dart@v1
       - name: dart pub get
         run: dart pub get
-      - name: Test local action
+      - name: 'Integration test: input'
         uses: ./core/test/integration/input
-        with:
-          test_path: "core/test/integration/input/main.dart"
   integration_test_logging:
     runs-on: ubuntu-latest
     defaults:
@@ -35,10 +33,8 @@ jobs:
         uses: dart-lang/setup-dart@v1
       - name: dart pub get
         run: dart pub get
-      - name: Test local action
+      - name: 'Integration test: logging'
         uses: ./core/test/integration/logging
-        with:
-          test_path: "core/test/integration/logging/main.dart"
   integration_test_export:
     runs-on: ubuntu-latest
     defaults:
@@ -51,10 +47,8 @@ jobs:
         uses: dart-lang/setup-dart@v1
       - name: dart pub get
         run: dart pub get
-      - name: Test local action
+      - name: 'Integration test: export'
         uses: ./core/test/integration/export
-        with:
-          test_path: "core/test/integration/export/main.dart"
   integration_test_output:
     runs-on: ubuntu-latest
     defaults:
@@ -67,7 +61,5 @@ jobs:
         uses: dart-lang/setup-dart@v1
       - name: dart pub get
         run: dart pub get
-      - name: Test local action
+      - name: 'Integration test: output'
         uses: ./core/test/integration/output
-        with:
-          test_path: "core/test/integration/output/main.dart"
