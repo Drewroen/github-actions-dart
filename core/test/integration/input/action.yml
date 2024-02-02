@@ -1,0 +1,21 @@
+name: 'Core Input Testing'
+description: 'A Github Action used for testing input'
+inputs:
+  TEST_INPUT:
+    description: 'An input for testing'
+    required: true
+    default: 'TEST INPUT SUCCESSFUL'
+  TEST_INPUT_BOOLEAN:
+    description: 'An input boolean for testing'
+    required: true
+    default: TRUE
+  TEST_INPUT_MULTILINE:
+    description: 'A multiline input for testing'
+    required: true
+    default: 'MULTILINE
+      TEST
+      INPUT
+      SUCCESSFUL'
+runs:
+  using: 'node20'
+  main: '../index.js'

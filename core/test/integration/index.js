@@ -1,11 +1,10 @@
 const core = require('@actions/core');
 const exec = require('@actions/exec');
-const path = require('path');
 
 async function run() {
     try {
-        await exec.exec('ls');
-        process.exitCode = await exec.exec('dart', ['core/test/integration/test-action/main.dart']);
+        test_path = core.getInput('test_path');
+        process.exitCode = await exec.exec('dart', [test_path]);
     } catch (error) {
         core.setFailed(error.message);
     }

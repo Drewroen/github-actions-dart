@@ -1,0 +1,8 @@
+name: 'Core Output Testing'
+description: 'A Github Action used for testing output'
+outputs:
+  TEST_OUTPUT:
+    description: 'A test output'
+runs:
+  using: 'node20'
+  main: '../index.js'

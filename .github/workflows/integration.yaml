@@ -1,0 +1,73 @@
+name: Dart Github Action Test
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  integration_test_input:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./core/test/integration/input
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1
+      - name: dart pub get
+        run: dart pub get
+      - name: Test local action
+        uses: ./core/test/integration/input
+        with:
+          test_path: "core/test/integration/input/main.dart"
+  integration_test_logging:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./core/test/integration/logging
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1
+      - name: dart pub get
+        run: dart pub get
+      - name: Test local action
+        uses: ./core/test/integration/logging
+        with:
+          test_path: "core/test/integration/logging/main.dart"
+  integration_test_export:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./core/test/integration/export
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1
+      - name: dart pub get
+        run: dart pub get
+      - name: Test local action
+        uses: ./core/test/integration/export
+        with:
+          test_path: "core/test/integration/export/main.dart"
+  integration_test_output:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./core/test/integration/output
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Dart
+        uses: dart-lang/setup-dart@v1
+      - name: dart pub get
+        run: dart pub get
+      - name: Test local action
+        uses: ./core/test/integration/output
+        with:
+          test_path: "core/test/integration/output/main.dart"

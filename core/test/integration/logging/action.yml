@@ -1,0 +1,5 @@
+name: 'Core Logging Testing'
+description: 'A Github Action used for testing logging'
+runs:
+  using: 'node20'
+  main: '../index.js'

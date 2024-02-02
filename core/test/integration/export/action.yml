@@ -1,0 +1,5 @@
+name: 'Core Export Testing'
+description: 'A Github Action used for testing exports'
+runs:
+  using: 'node20'
+  main: '../index.js'
