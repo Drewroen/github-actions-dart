@@ -11,7 +11,7 @@ void LoggingTests() {
       col: 1,
       endColumn: 2,
       line: 1,
-      endLine: 2);
+      endLine: 1);
 
   core.debug("This is a debug message.");
   core.info("This is an info message.");
