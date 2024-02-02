@@ -1,4 +1,4 @@
-name: Dart Github Action Test
+name: Integration Tests
 
 on:
   pull_request:
