@@ -1,0 +1,9 @@
+name: "Set up Dart project"
+description: "Does the reproducible steps of installing Dart and getting the packages"
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Dart
+      uses: dart-lang/setup-dart@v1
+    - name: dart pub get
+      run: dart pub get
