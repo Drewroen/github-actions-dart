@@ -1,5 +1,10 @@
 name: "Set up Dart project"
 description: "Does the reproducible steps of installing Dart and getting the packages"
+inputs:
+  project_path:
+    description: 'The path to the Dart project'
+    required: true
+    default: ''
 runs:
   using: "composite"
   steps:
@@ -7,4 +12,5 @@ runs:
       uses: dart-lang/setup-dart@v1
     - name: dart pub get
       shell: bash
+      working-directory: ${{ inputs.project_path }}
       run: dart pub get

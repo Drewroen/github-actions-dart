@@ -11,63 +11,51 @@ jobs:
     runs-on: ubuntu-latest
     env:
       test_name: input
-    defaults:
-      run:
-        working-directory: ./core/test/integration/${{ env.test_name }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Set up dart project
         uses: ./.github/actions/setup_dart_project
         with:
-          path: ./core/test/integration/${{ env.test_name }}
+          project_path: ./core/test/integration/${{ env.test_name }}
       - name: 'Integration test: ${{ env.test_name }}'
         uses: ./core/test/integration/input
   integration_test_logging:
     runs-on: ubuntu-latest
     env:
       test_name: logging
-    defaults:
-      run:
-        working-directory: ./core/test/integration/${{ env.test_name }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Set up dart project
         uses: ./.github/actions/setup_dart_project
         with:
-          path: ./core/test/integration/${{ env.test_name }}
+          project_path: ./core/test/integration/${{ env.test_name }}
       - name: 'Integration test: ${{ env.test_name }}'
         uses: ./core/test/integration/logging
   integration_test_export:
     runs-on: ubuntu-latest
     env:
       test_name: export
-    defaults:
-      run:
-        working-directory: ./core/test/integration/${{ env.test_name }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Set up dart project
         uses: ./.github/actions/setup_dart_project
         with:
-          path: ./core/test/integration/${{ env.test_name }}
+          project_path: ./core/test/integration/${{ env.test_name }}
       - name: 'Integration test: ${{ env.test_name }}'
         uses: ./core/test/integration/export
   integration_test_output:
     runs-on: ubuntu-latest
     env:
       test_name: output
-    defaults:
-      run:
-        working-directory: ./core/test/integration/${{ env.test_name }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Set up dart project
         uses: ./.github/actions/setup_dart_project
         with:
-          path: ./core/test/integration/${{ env.test_name }}
+          project_path: ./core/test/integration/${{ env.test_name }}
       - name: 'Integration test: ${{ env.test_name }}'
         uses: ./core/test/integration/output
