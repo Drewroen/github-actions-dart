@@ -6,4 +6,5 @@ runs:
     - name: Setup Dart
       uses: dart-lang/setup-dart@v1
     - name: dart pub get
+      shell: bash
       run: dart pub get
